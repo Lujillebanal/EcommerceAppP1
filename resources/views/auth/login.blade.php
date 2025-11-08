@@ -44,6 +44,17 @@
             </x-primary-button>
         </div>
 
+                <!-- rules() -->
+            public function rules(): array
+        {
+            return [
+                'email' => ['required', 'string', 'email'],
+                'password' => ['required', 'string'],
+                'g-recaptcha-response' => ['required', 'captcha'], // Add this line
+            ];
+        }
+
+
                 <!-- reCAPTCHA -->
         <div class="mt-4">
                 {{-- This line loads the necessary Google JavaScript --}}
