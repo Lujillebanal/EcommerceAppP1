@@ -31,7 +31,7 @@
                 <a href="{{ route('shop.index') }}" class="me-4 text-sm font-medium text-gray-600 hover:text-gray-900">Shop</a>
 
                 <a href="{{ route('cart.index') }}" class="me-4 text-sm font-medium text-gray-600 hover:text-gray-900">
-                Cart ({{ Cart::$totalQuantity = Cart::count()}})
+                Cart ({{ Cart::count() }})
 
  </a>
 
@@ -62,5 +62,9 @@
                 {{ $slot }}
             </div>
         </div>
+        <head>
+    {!! NoCaptcha::renderJs() !!}
+</head>
+
     </body>
 </html>

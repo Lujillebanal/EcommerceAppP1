@@ -1,3 +1,4 @@
+
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -44,31 +45,18 @@
             </x-primary-button>
         </div>
 
-                <!-- rules() -->
-            public function rules(): array
-        {
-            return [
-                'email' => ['required', 'string', 'email'],
-                'password' => ['required', 'string'],
-                'g-recaptcha-response' => ['required', 'captcha'], // Add this line
-            ];
-        }
-
-
                 <!-- reCAPTCHA -->
-        <div class="mt-4">
-                {{-- This line loads the necessary Google JavaScript --}}
-                {!! NoCaptcha::renderJs() !!}
+                <div class="mt-4">
+{!! NoCaptcha::renderJs() !!}
+{!! NoCaptcha::display() !!}
 
-                {{-- This line displays the actual checkbox --}}
-                {!! NoCaptcha::display() !!}
 
-                {{-- This part shows an error message if the user forgets to check the box --}}
-            @if ($errors->has('g-recaptcha-response'))
-                <span class="text-red-600 text-sm mt-2 block">
-                     {{ $errors->first('g-recaptcha-response') }}
-                 </span>
-            @endif
-        </div>
+    @if ($errors->has('g-recaptcha-response'))
+        <span class="text-sm text-red-600">
+            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+        </span>
+    @endif
+</div>
+
     </form>
 </x-guest-layout>

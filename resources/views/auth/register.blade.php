@@ -43,29 +43,33 @@
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
-            
+
             <x-primary-button class="ms-4">
                 {{ __('Register') }}
+                <div class="mt-4">
+    {{-- This line loads the necessary Google JavaScript --}}
+    {!! NoCaptcha::renderJs() !!}
+
+    {{-- This line displays the actual checkbox --}}
+    {!! NoCaptcha::display() !!}
+<div class="flex items-center justify-end mt-4">
+<x-primary-button class="ms-4">
+        {{ __('Register') }}
+    </x-primary-button>
+</div>
+
+    {{-- This part shows an error message if the user forgets to check the box --}}
+    @if ($errors->has('g-recaptcha-response'))
+        <span class="text-red-600 text-sm mt-2 block">
+            {{ $errors->first('g-recaptcha-response') }}
+        </span>
+    @endif
+</div>
+
             </x-primary-button>
         </div>
 
-        
-        <!-- reCAPTCHA -->
-        <div class="mt-4">
-                {{-- This line loads the necessary Google JavaScript --}}
-                {!! NoCaptcha::renderJs() !!}
-
-                {{-- This line displays the actual checkbox --}}
-                {!! NoCaptcha::display() !!}
-
-                {{-- This part shows an error message if the user forgets to check the box --}}
-            @if ($errors->has('g-recaptcha-response'))
-                <span class="text-red-600 text-sm mt-2 block">
-                    {{ $errors->first('g-recaptcha-response') }}
-                </span>
-        @endif
-        </div>
-
+       
 
     </form>
 </x-guest-layout>

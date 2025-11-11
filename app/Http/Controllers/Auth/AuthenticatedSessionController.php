@@ -25,7 +25,7 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->validate([
-            'g-recaptcha-response' => ['required', 'no_captcha'],
+            'g-recaptcha-response' => ['required', 'captcha'],
         ]);
         
         $request->authenticate();

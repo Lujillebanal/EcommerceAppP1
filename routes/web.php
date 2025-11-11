@@ -42,10 +42,10 @@ Route::middleware('auth')->group(function () {
     
 
         // Regular User Dashboard (default Breeze route)
-    Route::middleware('auth')->group(function () {
-        RouteView::get('/dashboard', function () {
-            return view('dashboard');
-        })->name('dashboard');
+        Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
 
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -80,7 +80,6 @@ Route::middleware('auth')->group(function () {
 
     require __DIR__.'/auth.php';
 
-    });
 
     // Public "Shop" Route
     Route::get('/shop', [ProductController::class, 'shop'])->name('shop.index');

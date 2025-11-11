@@ -13,7 +13,7 @@
             </div>
         @endif
 
-        @if (Cart::getTotalQuantity() > 0)
+        @if (Cart::count() > 0)
             <div class="bg-white shadow-md rounded-lg overflow-hidden">
                 <table class="min-w-full bg-white">
                     <thead class="bg-gray-100">
